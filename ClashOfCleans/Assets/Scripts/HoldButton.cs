@@ -1,0 +1,17 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+{
+    public bool isHeld = false;
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        isHeld = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        isHeld = false;
+    }
+}
