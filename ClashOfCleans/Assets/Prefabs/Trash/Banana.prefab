@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1285263514618596527}
   - component: {fileID: 2798449030355276289}
   - component: {fileID: 6361490217279065079}
+  - component: {fileID: 4457724383178849820}
   m_Layer: 0
   m_Name: Banana
   m_TagString: Untagged
@@ -179,3 +180,15 @@ PolygonCollider2D:
       - {x: -0.24499999, y: -0.805}
       - {x: -0.185, y: -0.72499996}
   m_UseDelaunayMesh: 0
+--- !u!114 &4457724383178849820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9196581810273938655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1d1b816385eaa40bb10d2c3c88c206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashCollectible

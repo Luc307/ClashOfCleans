@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4858683272562273150}
   - component: {fileID: 306123133463943033}
   - component: {fileID: 2049880784937141341}
+  - component: {fileID: -3356257650783902178}
   m_Layer: 0
   m_Name: Battery
   m_TagString: Untagged
@@ -149,3 +150,15 @@ PolygonCollider2D:
       - {x: 0.905, y: 1.3}
       - {x: 0.815, y: 1.4}
   m_UseDelaunayMesh: 0
+--- !u!114 &-3356257650783902178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505444283948184395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1d1b816385eaa40bb10d2c3c88c206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashCollectible

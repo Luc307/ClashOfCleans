@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6754414309647488112}
   - component: {fileID: 4128200397037276338}
   - component: {fileID: 3030247916260848201}
+  - component: {fileID: -6373560779604843352}
   m_Layer: 0
   m_Name: Chips
   m_TagString: Untagged
@@ -156,3 +157,15 @@ PolygonCollider2D:
       - {x: 0.85999995, y: -0.85999995}
       - {x: 0.84999996, y: -0.82}
   m_UseDelaunayMesh: 0
+--- !u!114 &-6373560779604843352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838315592863611739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1d1b816385eaa40bb10d2c3c88c206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashCollectible

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8677535367043908116}
   - component: {fileID: 5038059862920755875}
   - component: {fileID: 4078622226549736043}
+  - component: {fileID: -9089278416319202304}
   m_Layer: 0
   m_Name: ChinaFood
   m_TagString: Untagged
@@ -191,3 +192,15 @@ PolygonCollider2D:
       - {x: 0.37, y: -1.67}
       - {x: 0.51, y: -1.5999999}
   m_UseDelaunayMesh: 0
+--- !u!114 &-9089278416319202304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4893745000828967030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1d1b816385eaa40bb10d2c3c88c206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashCollectible

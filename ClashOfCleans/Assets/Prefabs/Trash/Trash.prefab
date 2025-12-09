@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2712547483248515331}
   - component: {fileID: 750122434626390395}
   - component: {fileID: 5183641190896633741}
+  - component: {fileID: -5736610291958002595}
   m_Layer: 0
   m_Name: Trash
   m_TagString: Untagged
@@ -186,3 +187,15 @@ PolygonCollider2D:
       - {x: 0.044999998, y: -1.8249999}
       - {x: 0.185, y: -1.755}
   m_UseDelaunayMesh: 0
+--- !u!114 &-5736610291958002595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318151895379974885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1d1b816385eaa40bb10d2c3c88c206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashCollectible

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4830832905364781816}
   - component: {fileID: 4957270167093617159}
   - component: {fileID: 5970602818144397816}
+  - component: {fileID: 4304373796746393011}
   m_Layer: 0
   m_Name: PlasticBag
   m_TagString: Untagged
@@ -157,3 +158,15 @@ PolygonCollider2D:
       - {x: 0.45, y: -0.044999998}
       - {x: 0.44, y: 0.024999999}
   m_UseDelaunayMesh: 0
+--- !u!114 &4304373796746393011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330391837183771550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1d1b816385eaa40bb10d2c3c88c206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashCollectible
