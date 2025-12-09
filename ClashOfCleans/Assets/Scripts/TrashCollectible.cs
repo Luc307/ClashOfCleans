@@ -17,11 +17,11 @@ public class TrashCollectible : MonoBehaviour
         // Check if the player collected this trash
         if (collision.CompareTag("Player"))
         {
-            // Notify the game manager that trash was collected
-            GameManager gameManager = FindObjectOfType<GameManager>();
-            if (gameManager != null)
+            // Notify the game that trash was collected
+            Game game = GameObject.Find("ScriptExecuter").GetComponent<Game>();
+            if (game != null)
             {
-                gameManager.CollectTrash();
+                game.CollectTrash();
             }
             
             // Make the trash disappear
@@ -29,4 +29,3 @@ public class TrashCollectible : MonoBehaviour
         }
     }
 }
-
