@@ -1,0 +1,106 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System;
+
+public class GameManager : MonoBehaviour
+{
+    [SerializeField] private int totalTrashCount = 12;
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI trashCountText;
+    
+    private int collectedTrashCount = 0;
+    private float startTime;
+    private bool isTimerRunning = false;
+    private float finalTime = 0f;
+
+    private void Start()
+    {
+        // Start the stopwatch when the game scene loads
+        StartTimer();
+        
+        // Update UI
+        UpdateTrashCountUI();
+    }
+
+    private void Update()
+    {
+        if (isTimerRunning)
+        {
+            // Update timer display
+            float elapsedTime = Time.time - startTime;
+            UpdateTimerDisplay(elapsedTime);
+        }
+    }
+
+    public void StartTimer()
+    {
+        startTime = Time.time;
+        isTimerRunning = true;
+    }
+
+    public void StopTimer()
+    {
+        if (isTimerRunning)
+        {
+            finalTime = Time.time - startTime;
+            isTimerRunning = false;
+            UpdateTimerDisplay(finalTime);
+            
+            // Save to leaderboard
+            Leaderboard leaderboard = FindObjectOfType<Leaderboard>();
+            if (leaderboard != null)
+            {
+                leaderboard.AddScore(PlayerData.playerName, finalTime);
+            }
+        }
+    }
+
+    public void CollectTrash()
+    {
+        collectedTrashCount++;
+        UpdateTrashCountUI();
+        
+        // Check if all trash is collected
+        if (collectedTrashCount >= totalTrashCount)
+        {
+            StopTimer();
+            Debug.Log("All trash collected! Final time: " + FormatTime(finalTime));
+        }
+    }
+
+    private void UpdateTrashCountUI()
+    {
+        if (trashCountText != null)
+        {
+            trashCountText.text = $"Trash: {collectedTrashCount}/{totalTrashCount}";
+        }
+    }
+
+    private void UpdateTimerDisplay(float time)
+    {
+        if (timerText != null)
+        {
+            timerText.text = "Time: " + FormatTime(time);
+        }
+    }
+
+    private string FormatTime(float time)
+    {
+        int minutes = Mathf.FloorToInt(time / 60f);
+        int seconds = Mathf.FloorToInt(time % 60f);
+        int milliseconds = Mathf.FloorToInt((time * 1000f) % 1000f);
+        return string.Format("{0:00}:{1:00}.{2:000}", minutes, seconds, milliseconds);
+    }
+
+    public float GetFinalTime()
+    {
+        return finalTime;
+    }
+
+    public bool IsGameComplete()
+    {
+        return collectedTrashCount >= totalTrashCount;
+    }
+}
+
