@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,12 @@ public class NameInput : MonoBehaviour
     [SerializeField] private Button playBtn;
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI errorText;
+
+    private void Awake()
+    {
+        // Reset session data when the app starts from the menu
+        PlayerData.Reset();
+    }
 
     void Start()
     {   
@@ -22,24 +29,10 @@ public class NameInput : MonoBehaviour
                 return;
             }
 
-            // Check if name is already taken
-            if (LeaderboardManager.IsNameTaken(playerName))
-            {
-                ShowError("This name is already taken!");
-                return;
-            }
-
-            // Register the player name
-            if (LeaderboardManager.RegisterPlayer(playerName))
-            {
-                PlayerData.playerName = playerName;
-                HideError();
-                SceneManager.LoadScene("SkinMenu");
-            }
-            else
-            {
-                ShowError("Could not register name. Please try again.");
-            }
+            // Register the player name locally
+            PlayerData.playerName = playerName.FirstCharacterToUpper();
+            HideError();
+            SceneManager.LoadScene("SkinMenu");
         });
 
         // Also check on input change (optional - gives immediate feedback)

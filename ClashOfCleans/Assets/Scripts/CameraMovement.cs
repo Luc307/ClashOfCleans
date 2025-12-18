@@ -1,11 +1,16 @@
 using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     private float smoothTime = 0.3f;
     private Vector3 velocity = Vector3.zero;
 
-    void Update()
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
+
+    private void Update()
     {
         if (player){
             Vector3 targetPosition = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);

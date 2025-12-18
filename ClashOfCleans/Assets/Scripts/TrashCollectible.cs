@@ -18,14 +18,13 @@ public class TrashCollectible : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // Notify the game that trash was collected
-            Game game = GameObject.Find("ScriptExecuter").GetComponent<Game>();
+            GameSetUp game = GameObject.Find("ScriptExecuter").GetComponent<GameSetUp>();
             if (game != null)
             {
                 game.CollectTrash();
             }
             
-            // Make the trash disappear
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

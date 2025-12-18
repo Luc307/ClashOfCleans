@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class Game : MonoBehaviour
+public class GameSetUp : MonoBehaviour
 {
     [SerializeField] private CameraMovement cameraMovement;
     [SerializeField] private GameObject MaskDude;
@@ -29,12 +29,11 @@ public class Game : MonoBehaviour
             {"SpaceGuy", SpaceGuy }
         };
         PlayerData.player = skinDict[PlayerData.skinName];
+        Instantiate(PlayerData.player, new Vector3(0, 5, 0), Quaternion.identity, transform);
     }
     
     private void Start()
     {
-        Instantiate(PlayerData.player, new Vector3(0, 5, 0), Quaternion.identity, transform);
-        
         // Start the stopwatch when the game scene loads
         StartTimer();
         
@@ -63,6 +62,10 @@ public class Game : MonoBehaviour
         if (isTimerRunning)
         {
             PlayerData.finalTime = Time.time - startTime;
+            if (PlayerData.finalTime < PlayerData.bestTime || PlayerData.bestTime == 0)
+            {
+                PlayerData.bestTime = PlayerData.finalTime;
+            }
             isTimerRunning = false;
             UpdateTimerDisplay(PlayerData.finalTime);
             SceneManager.LoadScene("Leaderboard");
@@ -102,7 +105,7 @@ public class Game : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(time / 60f);
         int seconds = Mathf.FloorToInt(time % 60f);
-        int milliseconds = Mathf.FloorToInt((time * 1000f) % 1000f);
+        int milliseconds = Mathf.FloorToInt(time * 1000f % 1000f);
         return string.Format("{0:00}:{1:00}.{2:000}", minutes, seconds, milliseconds);
     }
 }

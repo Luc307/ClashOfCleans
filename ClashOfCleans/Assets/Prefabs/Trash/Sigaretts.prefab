@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7703759071979857072
+--- !u!1 &3643964037220669370
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1539871705112661603}
-  - component: {fileID: 2171747160535127833}
-  - component: {fileID: 6728305813228255971}
-  - component: {fileID: -7096177219545086241}
+  - component: {fileID: 2464844786271985761}
+  - component: {fileID: 2680777087019884629}
+  - component: {fileID: 3204391375834272060}
+  - component: {fileID: 583295828706037801}
   m_Layer: 0
   m_Name: Sigaretts
   m_TagString: Untagged
@@ -19,28 +19,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1539871705112661603
+--- !u!4 &2464844786271985761
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703759071979857072}
+  m_GameObject: {fileID: 3643964037220669370}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1082.22, y: 446.09, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalPosition: {x: -25.390244, y: 3.0313263, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2171747160535127833
+--- !u!212 &2680777087019884629
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703759071979857072}
+  m_GameObject: {fileID: 3643964037220669370}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -92,13 +92,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &6728305813228255971
+--- !u!60 &3204391375834272060
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703759071979857072}
+  m_GameObject: {fileID: 3643964037220669370}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -197,13 +197,13 @@ PolygonCollider2D:
       - {x: 0.114999995, y: -1.785}
       - {x: 0.195, y: -1.745}
   m_UseDelaunayMesh: 0
---- !u!114 &-7096177219545086241
+--- !u!114 &583295828706037801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703759071979857072}
+  m_GameObject: {fileID: 3643964037220669370}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f1d1b816385eaa40bb10d2c3c88c206, type: 3}

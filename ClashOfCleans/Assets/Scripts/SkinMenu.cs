@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Image PinkMan;
     [SerializeField] private Image VirtualGuy;
     private int currentIndex = 0;
-    private string[] skins = { "MaskDude", "NinjaFrog", "PinkMan", "VirtualGuy" };
+    private string[] skins = { "MaskDude", "NinjaFrog", "PinkMan", "SpaceGuy" };
 
     private Vector3 transformVelocity = Vector3.zero;
     private float smoothTime = 0.15f;

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,15 +11,26 @@ public class PlayerMovement : MonoBehaviour
 
     private float moveSpeed = 7.5f;
     private float jumpForce = 750f;
+    private float bounceVelocity = 52f; // Neue Variable für konsistente Bounce-Höhe
     private bool grounded = false;
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        grounded = true;
 
-    private void OnTriggerEnter2D(Collider2D collision) {grounded = true;}
+        if (collision.gameObject.CompareTag("Jump")){
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocityX, bounceVelocity);
+        }
+        else{
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocityX, 0);
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision) {grounded = false;}
     private void OnTriggerStay2D(Collider2D collision) {grounded = true;}
 
-    private void Move(Vector3 direction){
+
+    private void Move(Vector3 direction) {
         animator.SetBool("isRunning", true);
+
         rb2d.linearVelocity = new Vector2(direction.x * moveSpeed, rb2d.linearVelocity.y);
 
         if(direction.x > 0){
@@ -28,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(-5, 5, 5);
         }
     }
-
     private void Awake(){
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
@@ -47,11 +58,11 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         rb2d.linearVelocity = new Vector2(0, rb2d.linearVelocity.y);
-        if (rightBtn.GetComponent<HoldButton>().isHeld)
+        if (rightBtn.GetComponent<HoldButton>().isHeld || Input.GetKey(KeyCode.D))
         {
             Move(Vector3.right);
         }
-        else if (leftBtn.GetComponent<HoldButton>().isHeld)
+        else if (leftBtn.GetComponent<HoldButton>().isHeld || Input.GetKey(KeyCode.A))
         {
             Move(Vector3.left);
         }
@@ -59,5 +70,12 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
         }
+        if (Input.GetKeyDown(KeyCode.Space)){
+            if(grounded){
+                rb2d.AddForce(Vector2.up * jumpForce);
+            } 
+        }
+
     }
+
 }
