@@ -14,4 +14,6 @@ public static class PlayerData
         skinName = "MaskDude";
         player = null;
     }
+    public static float finalTime { get; set; } = 0f;
+    public static float bestTime { get; set; } = 0f;
 }

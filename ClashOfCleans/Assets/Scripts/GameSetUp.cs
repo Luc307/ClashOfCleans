@@ -62,7 +62,9 @@ public class GameSetUp : MonoBehaviour
         if (isTimerRunning)
         {
             PlayerData.finalTime = Time.time - startTime;
+
             if (PlayerData.finalTime < PlayerData.bestTime || PlayerData.bestTime == 0)
+            if(PlayerData.bestTime == 0f || PlayerData.finalTime < PlayerData.bestTime)
             {
                 PlayerData.bestTime = PlayerData.finalTime;
             }
@@ -101,7 +103,7 @@ public class GameSetUp : MonoBehaviour
         }
     }
 
-    private string FormatTime(float time)
+    public string FormatTime(float time)
     {
         int minutes = Mathf.FloorToInt(time / 60f);
         int seconds = Mathf.FloorToInt(time % 60f);
