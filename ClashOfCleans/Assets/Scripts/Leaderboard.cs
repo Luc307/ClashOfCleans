@@ -10,7 +10,11 @@ using UnityEngine.UI;
 public class Leaderboard : MonoBehaviour
 {
     [SerializeField] private TMPro.TextMeshProUGUI leaderboardText;
+    [SerializeField] private TMPro.TextMeshProUGUI userTimes;
     [SerializeField] private Button skinMenuBtn;
+    private bool saved = false;
+    private float finalTime;
+    private float bestTime;
 
     private string FormatTime(float time)
     {
@@ -64,35 +68,26 @@ public class Leaderboard : MonoBehaviour
         }
 
         leaderboardText.text = leaderboardBuilder.ToString();
+
+        saved = true;
     }
     private void OnDataLoaded(JObject data)
     {
         if (data == null) return;
 
-        //check if player already exists
         bool userExists = false;
         foreach (var user in data["users"])
         {
             if ((string)user["name"] == PlayerData.playerName)
             {
                 userExists = true;
+                user["bestTime"] = (ParseTime((string)user["bestTime"]) > bestTime) ? FormatTime(bestTime) : user["bestTime"];
                 break;
             }
         }
-        if(userExists)
+        if (!userExists)
         {
-            foreach (var user in data["users"])
-            {
-                if ((string)user["name"] == PlayerData.playerName)
-                {
-                    user["bestTime"] = FormatTime(PlayerData.bestTime);
-                    break;
-                }
-            }
-        }
-        else
-        {
-            JsonBinHelper.AddNewUser(data, PlayerData.playerName, FormatTime(PlayerData.bestTime)); 
+            JsonBinHelper.AddNewUser(data, PlayerData.playerName, FormatTime(bestTime)); 
         }
                 
         JsonBinHelper.SaveDataToJsonBin(data, UpdateLeaderboardUI);
@@ -104,13 +99,20 @@ public class Leaderboard : MonoBehaviour
     }
     private void Start()
     {
+        Debug.Log((PlayerData.sceneName == "1.Level") ? "693b20e5ae596e708f934e13" : "6962dc8bae596e708fd3677c");
+        bestTime = PlayerData.GetBestTime();
+        finalTime = PlayerData.GetFinalTime();
+
+        userTimes.text += $"\n\n\n {FormatTime(finalTime)} / {FormatTime(bestTime)} \n\n\n ~{PlayerData.playerName}";
+
         JsonBinHelper.LoadDataFromJsonBin(OnDataLoaded);
 
         if (skinMenuBtn != null)
         {
             skinMenuBtn.onClick.AddListener(() =>
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("SkinMenu");
+                if(!saved) return;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("LevelMenu");
             });
         }
     }
@@ -118,14 +120,16 @@ public class Leaderboard : MonoBehaviour
 
 public static class JsonBinHelper
 {
-    private static readonly string API_KEY = "$2a$10$igQLnuMoSmveeydQkijDXOCmjRN0ZW0B/w1EoQQFsUV6gNrZPZg66";
-    private static readonly string BIN_ID = "693b20e5ae596e708f934e13";
+    private static readonly string API_KEY = "$2a$10$uvu27/abKm8a/AtwnBmmVOhcD9hc.qtu/iPpBGeLCdGn.o.5Gsd.G";
+    //Das funktioniert nicht, weil static die bedingung nur einmal ausführt und readonly weitere änderungen verhindert
+    //private static readonly string BIN_ID = (PlayerData.sceneName == "1.Level") ? "693b20e5ae596e708f934e13" : "6962dc8bae596e708fd3677c";
+    //durch => wird die bedingung jedes mal ausgeführt, es ist eine kurzform für eine getter only property
+    private static string BIN_ID => (PlayerData.sceneName == "1.Level") ? "693b20e5ae596e708f934e13" : "6962dc8bae596e708fd3677c";
     private static readonly string BASE_URL = "https://api.jsonbin.io/v3/b";
 
     public delegate void DataLoadedCallback(JObject data);
     public delegate void DataSavedCallback(JObject savedData);
 
-    // Statische Referenz zu einem MonoBehaviour für Coroutinen (muss einmal gesetzt werden, z.B. in Awake eines anderen Skripts)
     private static MonoBehaviour coroutineRunner;
 
     public static void SetCoroutineRunner(MonoBehaviour runner)

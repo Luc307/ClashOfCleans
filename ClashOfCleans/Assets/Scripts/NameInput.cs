@@ -10,14 +10,12 @@ public class NameInput : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI errorText;
 
-    private void Awake()
-    {
-        // Reset session data when the app starts from the menu
-        PlayerData.Reset();
-    }
 
     void Start()
-    {   
+    {
+        inputField.text = PlayerData.playerName;
+        Debug.Log($"Current Player Name: {PlayerData.playerName}");
+
         playBtn.onClick.AddListener(() =>
         {
             string playerName = inputField.text.Trim();
@@ -32,7 +30,7 @@ public class NameInput : MonoBehaviour
             // Register the player name locally
             PlayerData.playerName = playerName.FirstCharacterToUpper();
             HideError();
-            SceneManager.LoadScene("SkinMenu");
+            SceneManager.LoadScene("LevelMenu");
         });
 
         // Also check on input change (optional - gives immediate feedback)

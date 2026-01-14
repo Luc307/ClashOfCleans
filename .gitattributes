@@ -1,2 +1,46 @@
-# Auto detect text files and perform LF normalization
+# 1. Unity binary files (MUST stay binary)
+*.prefab binary
+*.unity binary
+*.asset binary
+*.mat binary
+*.anim binary
+*.controller binary
+*.physicMaterial binary
+*.physicsMaterial binary
+*.physicsMaterial2D binary
+*.terrainlayer binary
+*.cubemap binary
+*.flare binary
+*.fontsettings binary
+*.guiskin binary
+*.rendertexture binary
+
+# 2. Meta files (ALSO binary!)
+*.meta binary
+
+# 3. ProjectSettings and Packages (ALL as text)
+ProjectSettings/* text
+Packages/* text
+
+# 4. Source code
+*.cs text
+*.shader text
+*.cginc text
+*.hlsl text
+*.glslinc text
+*.js text
+*.ts text
+
+# 5. Text files
+*.json text
+*.txt text
+*.md text
+*.xml text
+*.yml text
+*.yaml text
+*.html text
+*.css text
+*.csv text
+
+# 6. LAST: Auto for everything else
 * text=auto

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private Button returnBtn;
     [SerializeField] private Button playBtn;
     [SerializeField] private Button nextBtn;
     [SerializeField] private Button prevBtn;
@@ -51,7 +52,11 @@ public class MainMenu : MonoBehaviour
 
         playBtn.onClick.AddListener(() =>
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(PlayerData.sceneName);
+        });
+        returnBtn.onClick.AddListener(() =>
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("LevelMenu");
         });
     }
 

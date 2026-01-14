@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameSetUp : MonoBehaviour
 {
@@ -13,10 +14,13 @@ public class GameSetUp : MonoBehaviour
     [SerializeField] private int totalTrashCount = 12;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI trashCountText;
+    [SerializeField] private Button playAgainBtn;
     
     private Dictionary<string, GameObject> skinDict;
     private int collectedTrashCount = 0;
     private float startTime;
+    private float finalTime;
+    private float bestTime;
     private bool isTimerRunning = false;
 
     private void Awake()
@@ -34,11 +38,17 @@ public class GameSetUp : MonoBehaviour
     
     private void Start()
     {
-        // Start the stopwatch when the game scene loads
+        bestTime = PlayerData.GetBestTime();
+        finalTime = PlayerData.GetFinalTime();
+
         StartTimer();
         
-        // Update UI
         UpdateTrashCountUI();
+
+        playAgainBtn.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("LevelMenu");
+        });
     }
 
     private void Update()
@@ -61,16 +71,19 @@ public class GameSetUp : MonoBehaviour
     {
         if (isTimerRunning)
         {
-            PlayerData.finalTime = Time.time - startTime;
+            finalTime = Time.time - startTime;
 
-            if (PlayerData.finalTime < PlayerData.bestTime || PlayerData.bestTime == 0)
-            if(PlayerData.bestTime == 0f || PlayerData.finalTime < PlayerData.bestTime)
+            if (finalTime < bestTime || bestTime == 0)
+            if (bestTime == 0f || finalTime < bestTime)
             {
-                PlayerData.bestTime = PlayerData.finalTime;
+                bestTime = finalTime;
             }
             isTimerRunning = false;
-            UpdateTimerDisplay(PlayerData.finalTime);
+            UpdateTimerDisplay(finalTime);
             SceneManager.LoadScene("Leaderboard");
+
+            PlayerData.SetBestTime(bestTime);
+            PlayerData.SetFinalTime(finalTime);
         }
     }
 
@@ -83,7 +96,7 @@ public class GameSetUp : MonoBehaviour
         if (collectedTrashCount >= totalTrashCount)
         {
             StopTimer();
-            Debug.Log("All trash collected! Final time: " + FormatTime(PlayerData.finalTime));
+            Debug.Log("All trash collected! Final time: " + FormatTime(finalTime));
         }
     }
 
